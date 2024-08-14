@@ -12,4 +12,26 @@ function NotFoundPage(): JSX.Element{
   );
 }
 
+type User = {
+  firstname: string;
+  lastname: string;
+  age: number;
+  isAdmin: boolean;
+  }
+
+  const users: User[] = [
+    { firstname: 'Richie', lastname: 'Sambora', age: 61, isAdmin: false },
+    { firstname: 'Jon', lastname: 'Bon Jovi', age: 61, isAdmin: true },
+    { firstname: 'Fox William', lastname: 'Mulder', age: 60, isAdmin: true }
+  ];
+
+  function filterByProperty<Type, Key extends keyof Type>(collection: Type[], property: Key, value: Type[Key]): Type[] {
+    return collection.filter((item) => item[property] === value);
+  }
+
+  console.log(filterByProperty(users, 'age', 61)); // [
+  //   { firstname: 'Richie', lastname: 'Sambora', age: 61, isAdmin: false },
+  //   { firstname: 'Jon', lastname: 'Bon Jovi', age: 61, isAdmin: true }
+  // ]
+
 export default NotFoundPage;
